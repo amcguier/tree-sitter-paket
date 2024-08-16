@@ -1,0 +1,97 @@
+{
+  "name": "PAKET",
+  "rules": {
+    "source_file": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_paket_dependency"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_paket_references"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_paket_lock"
+        }
+      ]
+    },
+    "_paket_dependency": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_definition"
+      }
+    },
+    "_paket_references": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_reference_statement"
+      }
+    },
+    "_paket_lock": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_definition"
+      }
+    },
+    "_definition": {
+      "type": "STRING",
+      "value": "hello"
+    },
+    "_reference_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_reference_group"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_reference_definition"
+        }
+      ]
+    },
+    "_group_name": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z0-9_\\-\\.]+"
+    },
+    "_reference_group": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "group"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_group_name"
+        }
+      ]
+    },
+    "_definition_name": {
+      "type": "PATTERN",
+      "value": "[a-zA-Z0-9_\\-\\.]+"
+    },
+    "_reference_definition": {
+      "type": "SYMBOL",
+      "name": "_definition_name"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
+
